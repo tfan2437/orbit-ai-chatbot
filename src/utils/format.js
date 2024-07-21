@@ -22,7 +22,8 @@ export const formatResponseArray = (response) => {
 };
 
 export const generateId = () => {
-  const random1 = Math.random().toString(36).substring(2, 10);
-  const random2 = Math.random().toString(36).substring(2, 10);
-  return random1 + random2;
+  const largeNumber = 10000000000;
+  const currentTime = Math.floor(Date.now() / 1000);
+  const id = (largeNumber - currentTime).toString();
+  return id;
 };

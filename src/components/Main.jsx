@@ -4,10 +4,9 @@ import PromptCards from "./PromptCards";
 import { Context } from "../context/Context";
 
 const Main = () => {
-  const { isHomePage, setIsHomePage } = useContext(Context);
+  const { setIsHomePage } = useContext(Context);
   useEffect(() => {
     setIsHomePage(true);
-    console.log(isHomePage);
   }, []);
 
   return (

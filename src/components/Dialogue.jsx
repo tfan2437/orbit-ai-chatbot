@@ -1,47 +1,54 @@
 import "./Dialogue.css";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { assets } from "../assets/assets";
 import { Context } from "../context/Context";
 import { useParams } from "react-router-dom";
 
 const Dialogue = () => {
-  const { id } = useParams();
   const divRef = useRef();
-
+  const { id } = useParams();
   const {
     prompt,
-    loading,
     response,
     chatHistory,
-    isHomePage,
+    loading,
     setIsHomePage,
-    responseData,
-    setResponseData,
-    animationLoading,
+    getPrevChats,
+    currentUser,
+    uploadChatHistory,
+    getChatById,
   } = useContext(Context);
-
-  const [dialogueHistory, setDialogueHistory] = useState([]);
 
   useEffect(() => {
     setIsHomePage(false);
+    getPrevChats(currentUser.uid);
+    getChatById(currentUser.uid, id);
   }, []);
 
   useEffect(() => {
-    if (chatHistory.length !== 0) {
-      const temp = chatHistory.slice(0, chatHistory.length - 1);
-      setDialogueHistory(temp);
+    getChatById(currentUser.uid, id);
+  }, [id]);
+
+  useEffect(() => {
+    divRef.current.scrollTop = divRef.current.scrollHeight;
+  }, [response, loading]);
+
+  useEffect(() => {
+    const length = chatHistory.length;
+    if (length > 0 && chatHistory[length - 1].response !== "") {
+      uploadChatHistory(currentUser.uid, id);
     }
   }, [chatHistory]);
 
-  // Scroll to bottom when chatHistory or response updates
-  useEffect(() => {
-    divRef.current.scrollTop = divRef.current.scrollHeight;
-  }, [response, loading, animationLoading]);
+  const displayDialogues =
+    chatHistory.length > 0 && response === ""
+      ? chatHistory.slice(0, chatHistory.length)
+      : chatHistory.slice(0, chatHistory.length - 1);
 
   return (
     <div className="result" ref={divRef}>
-      {dialogueHistory.length !== 0 &&
-        dialogueHistory.map((item, index) => (
+      {chatHistory.length > 0 &&
+        displayDialogues.map((item, index) => (
           <div key={index}>
             <div className="result-title">
               <img src={assets.user_icon} alt="" />
@@ -67,7 +74,10 @@ const Dialogue = () => {
               <hr />
             </div>
           ) : (
-            <p dangerouslySetInnerHTML={{ __html: response }}></p>
+            <p
+              dangerouslySetInnerHTML={{ __html: response }}
+              className="result-output"
+            />
           )}
         </div>
       </div>

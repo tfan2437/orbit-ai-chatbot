@@ -7,7 +7,8 @@ import { generateId } from "../../utils/format";
 
 const PromptBar = () => {
   const navigate = useNavigate();
-  const { input, setInput, onSent, isHomePage } = useContext(Context);
+  const { input, setInput, onSent, isHomePage, setAlertMessage } =
+    useContext(Context);
 
   const hanlePromptSubmission = () => {
     onSent();
@@ -27,8 +28,16 @@ const PromptBar = () => {
           onChange={(e) => setInput(e.target.value)}
         />
         <div>
-          <img src={assets.gallery_icon} alt="" />
-          <img src={assets.mic_icon} alt="" />
+          <img
+            src={assets.gallery_icon}
+            alt=""
+            onClick={() => setAlertMessage("Feature coming soon.")}
+          />
+          <img
+            src={assets.mic_icon}
+            alt=""
+            onClick={() => setAlertMessage("Feature coming soon.")}
+          />
           {input ? (
             <img
               src={assets.send_icon}

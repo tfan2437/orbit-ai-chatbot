@@ -1,14 +1,32 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
 import Main from "./components/Main";
-import { useEffect } from "react";
-import { generateId } from "./utils/format";
 import Dialogue from "./components/Dialogue";
+import { useContext, useEffect } from "react";
+import { Context } from "./context/Context";
 
 const App = () => {
+  const { currentUser, setCurrentUser, getPrevChats } = useContext(Context);
+
+  const fakeOnAuthChange = () => {
+    setCurrentUser({
+      name: "Ting Wei Fan",
+      uid: "tfan2437",
+      email: "tfan2437@gmail.com",
+    });
+  };
+
   useEffect(() => {
-    // console.log(generateId());
+    if (!currentUser) {
+      fakeOnAuthChange();
+    }
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      getPrevChats(currentUser.uid);
+    }
+  }, [currentUser]);
 
   return (
     <Routes>
