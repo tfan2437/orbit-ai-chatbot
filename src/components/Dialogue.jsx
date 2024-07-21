@@ -1,24 +1,45 @@
 import "./Dialogue.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assets";
 import { Context } from "../context/Context";
+import { useParams } from "react-router-dom";
 
 const Dialogue = () => {
-  const { prompt, loading, response, chatHistory, setChatHistory, setLoading } =
-    useContext(Context);
+  const { id } = useParams();
+  const divRef = useRef();
+
+  const {
+    prompt,
+    loading,
+    response,
+    chatHistory,
+    isHomePage,
+    setIsHomePage,
+    responseData,
+    setResponseData,
+    animationLoading,
+  } = useContext(Context);
 
   const [dialogueHistory, setDialogueHistory] = useState([]);
-  //   const [showDialogue, setShowDialogue] = useState(false);
+
+  useEffect(() => {
+    setIsHomePage(false);
+  }, []);
 
   useEffect(() => {
     if (chatHistory.length !== 0) {
-      const temp = chatHistory.slice(0, chatHistory.length);
+      const temp = chatHistory.slice(0, chatHistory.length - 1);
       setDialogueHistory(temp);
     }
   }, [chatHistory]);
 
+  // Scroll to bottom when chatHistory or response updates
+  useEffect(() => {
+    divRef.current.scrollTop = divRef.current.scrollHeight;
+  }, [response, loading, animationLoading]);
+
   return (
-    <div className="result">
+    <div className="result" ref={divRef}>
       {dialogueHistory.length !== 0 &&
         dialogueHistory.map((item, index) => (
           <div key={index}>
@@ -46,7 +67,6 @@ const Dialogue = () => {
               <hr />
             </div>
           ) : (
-            // Result Output
             <p dangerouslySetInnerHTML={{ __html: response }}></p>
           )}
         </div>

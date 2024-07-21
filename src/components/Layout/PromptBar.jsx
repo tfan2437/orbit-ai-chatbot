@@ -3,14 +3,18 @@ import { Context } from "../../context/Context";
 import { assets } from "../../assets/assets";
 import "./PromptBar.css";
 import { useNavigate } from "react-router-dom";
+import { generateId } from "../../utils/format";
 
 const PromptBar = () => {
   const navigate = useNavigate();
-  const { input, setInput, onSent } = useContext(Context);
+  const { input, setInput, onSent, isHomePage } = useContext(Context);
 
   const hanlePromptSubmission = () => {
     onSent();
-    navigate("/chat");
+    if (isHomePage) {
+      const newChatId = generateId();
+      navigate(`/chat/${newChatId}`);
+    }
   };
 
   return (

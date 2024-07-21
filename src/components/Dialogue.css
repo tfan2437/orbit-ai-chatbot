@@ -1,12 +1,12 @@
 .result {
-  padding: 0px 5%;
+  padding: 0px 25% 200px 25%;
   max-height: 70vh;
   overflow-y: scroll;
 }
 
-.result::-webkit-scrollbar {
+/* .result::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .result-title {
   margin: 40px 0px;

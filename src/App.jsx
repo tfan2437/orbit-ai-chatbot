@@ -14,7 +14,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Main />} />
-        <Route path="/chat" element={<Dialogue />} />
+        <Route path="/chat/:id" element={<Dialogue />} />
       </Route>
     </Routes>
   );

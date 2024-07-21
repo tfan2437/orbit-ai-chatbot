@@ -1,91 +1,153 @@
-import { createContext, useState } from "react";
-import runChat from "../config/GeminiAPI";
-import { formatResponseArray } from "../utils/format";
+import { createContext, useEffect, useState } from "react";
 import { marked } from "marked";
+import runChat from "../config/GeminiAPI";
 
 export const Context = createContext();
 
 const ContextProvider = (props) => {
+  const [isHomePage, setIsHomePage] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  const [input, setInput] = useState("");
 
   const [chatHistory, setChatHistory] = useState([]);
 
+  const [input, setInput] = useState("");
   const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState("");
 
   const newChat = () => {
     setLoading(false);
   };
 
-  const typingAnimation = (responseArray) => {
+  const [responseData, setResponseData] = useState("");
+  const [response, setResponse] = useState("");
+
+  const [animationLoading, setAnimationLoading] = useState(true);
+
+  const typingAnimationString = (responseString) => {
     return new Promise((resolve, reject) => {
       try {
-        for (let i = 0; i < responseArray.length; i++) {
-          const nextWord = responseArray[i];
+        for (let i = 0; i < responseString.length; i++) {
+          const nextChar = responseString[i];
           setTimeout(() => {
-            setResponse((prev) => prev + nextWord + " ");
-          }, 20 * i);
+            setResponse((prev) => prev + nextChar);
+            if (i === responseString.length - 1) {
+              resolve("resolve");
+            }
+          }, 4 * i);
         }
-        resolve("resolve");
       } catch (error) {
         reject(error);
       }
     });
   };
 
-  const onSent = async () => {
-    if (response !== "" && prompt !== "") {
-      const lastPrompt = prompt;
-      const lastResponse = response;
-
-      const latestDialogue = {
-        prompt: lastPrompt,
-        response: lastResponse,
-      };
-      setChatHistory((prev) => [...prev, latestDialogue]);
-    }
-
-    setLoading(true);
-    setResponse("");
-
-    setPrompt(input);
-    const responseData = await runChat(input);
-    setInput("");
-
-    const formatedArray = await formatResponseArray(responseData);
-    await typingAnimation(formatedArray);
-
-    const rawMarkup = marked(responseData);
-    console.log(rawMarkup);
-
-    setLoading(false);
-  };
-
-  // setInput("");
-
-  // const formatedResponseTag = await formatResponseToHTML(responseData);
-  // setResponse(formatedResponseTag);
-
-  // const latestDialogue = {
-  //   prompt: currentPrompt,
-  //   response: formatedResponse.join(" "),
+  // const typingAnimationString = (responseString) => {
+  //   return new Promise((resolve, reject) => {
+  //     try {
+  //       for (let i = 0; i < responseString.length; i++) {
+  //         const nextChar = responseString[i];
+  //         setTimeout(() => {
+  //           setResponse((prev) => prev + nextChar);
+  //         }, 4 * i);
+  //       }
+  //       resolve("resolve");
+  //     } catch (error) {
+  //       reject(error);
+  //     }
+  //   });
   // };
 
-  // update chathistory and upload to firebase
-  // setChatHistory((prev) => [...prev, latestDialogue]);
+  // const onSent = async () => {
+  //   if (response !== "" && prompt !== "") {
+  //     const lastPrompt = prompt;
+  //     const lastResponse = response;
 
-  // const onSentOld = async () => {
+  //     const latestDialogue = {
+  //       prompt: lastPrompt,
+  //       response: lastResponse,
+  //     };
+  //     setChatHistory((prev) => [...prev, latestDialogue]);
+  //   }
+
   //   setLoading(true);
-  //   setPrompt(input);
   //   setResponse("");
 
-  //   // const formatedResponseTag = await formatResponseToHTML(responseData);
-  //   // console.log(formatedResponseTag);
+  //   setPrompt(input);
+  //   const geminiResponse = await runChat(input);
+  //   setInput("");
 
+  //   const formatedResponse = marked(geminiResponse);
+  //   setResponseData(formatedResponse);
   //   setLoading(false);
+
+  //   await typingAnimationString(formatedResponse);
+  //   if (response.length === responseData.length) {
+  //     console.log("Animation is Over");
+  //   } else {
+  //     console.log("error");
+  //   }
   // };
+
+  const updateChathistory = () => {
+    const lastPrompt = prompt;
+    const lastResponse = response;
+
+    const dialogue = {
+      prompt: lastPrompt,
+      response: lastResponse,
+    };
+    setPrompt("");
+    setResponse("");
+    setChatHistory((prev) => [...prev, dialogue]);
+  };
+
+  const addChathistory = (promptPara) => {
+    const dialogue = {
+      prompt: promptPara,
+      response: "",
+    };
+    setChatHistory((prev) => [...prev, dialogue]);
+  };
+
+  const updateChathistoryNew = (responsePara) => {
+    setChatHistory((prev) => {
+      const updatedHistory = [...prev];
+      if (updatedHistory.length > 0) {
+        const lastDialogue = {
+          ...updatedHistory[updatedHistory.length - 1],
+          response: responsePara,
+        };
+        updatedHistory[updatedHistory.length - 1] = lastDialogue;
+      }
+      return updatedHistory;
+    });
+  };
+
+  const onSent = async () => {
+    setLoading(true);
+    setResponse("");
+    setAnimationLoading((prev) => !prev);
+
+    addChathistory(input);
+
+    setPrompt(input);
+    const geminiResponse = await runChat(input);
+    setInput("");
+
+    const formatedResponse = marked(geminiResponse);
+    setResponseData(formatedResponse);
+    setLoading(false);
+
+    await typingAnimationString(formatedResponse);
+    setAnimationLoading(true);
+  };
+
+  useEffect(() => {
+    if (response.length > 0 && response.length === responseData.length) {
+      updateChathistoryNew(response);
+      console.log("Animation is Over");
+      setAnimationLoading((prev) => !prev);
+    }
+  }, [response, responseData]);
 
   const contextValue = {
     input,
@@ -98,6 +160,12 @@ const ContextProvider = (props) => {
     loading,
     response,
     newChat,
+    isHomePage,
+    setIsHomePage,
+    responseData,
+    setResponseData,
+    animationLoading,
+    setAnimationLoading,
   };
 
   return (
