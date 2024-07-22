@@ -1,7 +1,8 @@
 .main-container {
-  width: 900px;
-  margin: 0 auto;
-  padding: 100px 0 200px 0;
+  max-height: 80vh;
+  width: auto;
+  margin: 0 25% 0 25%;
+  padding: 0 0 120px 0;
 }
 
 .orbit-image {
@@ -23,7 +24,7 @@
 }
 
 .card {
-  height: 200px;
+  height: 140px;
   padding: 15px;
   background-color: #f0f4f9;
   border-radius: 10px;
@@ -32,7 +33,7 @@
 }
 
 .card img {
-  width: 35px;
+  height: 32px;
   padding: 5px;
   position: absolute;
   background-color: #fff;
@@ -42,7 +43,8 @@
 }
 
 .card p {
-  color: #585858;
+  color: #666;
+  font-weight: 400;
   font-size: 17px;
 }
 
@@ -50,7 +52,7 @@
   background-color: #dfe4ea;
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .main-bottom input {
     flex: none;
     width: 150px;
@@ -66,5 +68,17 @@
 
   .search-box div {
     gap: 5px;
+  }
+} */
+
+@media (max-width: 1400px) {
+  .main-container {
+    margin: 0 15% 0 15%;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-container {
+    margin: 0 8% 0 8%;
   }
 }

@@ -78,3 +78,8 @@ strong {
 body {
   max-height: 100vh;
 }
+
+code {
+  font-size: 14px;
+  font-weight: 600;
+}

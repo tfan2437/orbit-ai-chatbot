@@ -46,3 +46,30 @@
   font-weight: 300;
   color: #aaaaaa;
 }
+
+@media (max-width: 1400px) {
+  .main-bottom {
+    margin: 0 16% 0px 15%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-bottom {
+    padding-bottom: 20px;
+  }
+
+  .bottom-info {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-bottom {
+    margin: 0 8% 0px 8%;
+    padding-bottom: 15px;
+  }
+
+  .bottom-info {
+    display: none;
+  }
+}

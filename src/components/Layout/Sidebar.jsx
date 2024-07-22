@@ -4,18 +4,10 @@ import { Context } from "../../context/Context";
 import { assets } from "../../assets/assets";
 
 const Sidebar = () => {
-  const {
-    newChat,
-    onSent,
-    chatHistory,
-    setPrompt,
-    prevChats,
-    setPrevChats,
-    openPrevChat,
-    setAlertMessage,
-  } = useContext(Context);
+  const { newChat, prevChats, openPrevChat, setAlertMessage } =
+    useContext(Context);
 
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="sidebar">

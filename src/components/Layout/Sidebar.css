@@ -1,5 +1,5 @@
 .sidebar {
-  min-height: 100vh;
+  height: 100vh;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,7 +36,12 @@
 .sidebar .recent {
   display: flex;
   flex-direction: column;
-  animation: fadeIn 1.5s;
+  animation: fadeIn 1s;
+  overflow: scroll;
+}
+
+.recent::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar .recent-title {

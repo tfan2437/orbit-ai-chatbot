@@ -20,6 +20,11 @@ import aiRed from "./icon-ai-red.png";
 import dialogue from "./icon-dialogue.png";
 import orbitIcon from "./icon-orbit-star.png";
 
+import chatIcon from "./icon-chat.png";
+import peopleIcon from "./icon-people.png";
+import learningIcon from "./icon-learning.png";
+import codeIcon from "./icon-code.png";
+
 export const assets = {
   history_icon,
   menu_icon,
@@ -40,4 +45,8 @@ export const assets = {
   orbitLogoRed,
   aiRed,
   orbitIcon,
+  codeIcon,
+  learningIcon,
+  peopleIcon,
+  chatIcon,
 };
