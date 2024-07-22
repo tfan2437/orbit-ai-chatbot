@@ -12,6 +12,7 @@ const Sidebar = () => {
     prevChats,
     setPrevChats,
     openPrevChat,
+    setAlertMessage,
   } = useContext(Context);
 
   const [expanded, setExpanded] = useState(true);
@@ -41,7 +42,7 @@ const Sidebar = () => {
                   key={index}
                   onClick={() => openPrevChat(item.chatId)}
                 >
-                  <img src={assets.message_icon} alt="" />
+                  <img src={assets.dialogue} alt="" />
                   <p>{item.chatTitle}</p>
                 </div>
               );
@@ -50,15 +51,24 @@ const Sidebar = () => {
         )}
       </div>
       <div className="bottom">
-        <div className="bottom-item recent-entry">
+        <div
+          className="bottom-item recent-entry"
+          onClick={() => setAlertMessage("Feature coming soon.")}
+        >
           <img src={assets.question_icon} alt="" />
           {expanded && <p>Help</p>}
         </div>
-        <div className="bottom-item recent-entry">
+        <div
+          className="bottom-item recent-entry"
+          onClick={() => setAlertMessage("Feature coming soon.")}
+        >
           <img src={assets.history_icon} alt="" />
           {expanded && <p>Activity</p>}
         </div>
-        <div className="bottom-item recent-entry">
+        <div
+          className="bottom-item recent-entry"
+          onClick={() => setAlertMessage("Feature coming soon.")}
+        >
           <img src={assets.setting_icon} alt="" />
           {expanded && <p>Setting</p>}
         </div>

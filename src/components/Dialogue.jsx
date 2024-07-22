@@ -57,7 +57,6 @@ const Dialogue = () => {
           return (
             <div key={index}>
               <div className="result-title">
-                <img src={assets.user_icon} alt="" />
                 <p>{item.prompt}</p>
               </div>
               <div className="result-data">
@@ -68,10 +67,7 @@ const Dialogue = () => {
           );
         })}
       <div>
-        <div className="result-title">
-          {prompt !== "" && <img src={assets.user_icon} alt="" />}
-          <p>{prompt}</p>
-        </div>
+        <div className="result-title">{prompt !== "" && <p>{prompt}</p>}</div>
         <div className="result-data">
           {response !== "" || loading ? (
             <img src={assets.aiRed} alt="" />

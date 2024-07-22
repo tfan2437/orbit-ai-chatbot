@@ -2,30 +2,17 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { NavLink } from "react-router-dom";
 
-// .nav {
-//   width: 90%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   font-size: 22px;
-//   padding: 20px;
-//   color: #585858;
-//   position: fixed;
-// }
-
-// .nav img {
-//   width: 40px;
-//   border-radius: 50%;
-// }
-
 const Navbar = () => {
   return (
-    <nav className="w-[95%] flex justify-between items-start px-4 py-3 fixed z-30 bg-white">
+    <nav className="nav">
       <NavLink to={"/"}>
-        <img src={assets.orbitLogoRed} alt="" className="h-16" />
-        {/* <p className="text-3xl font-normal">Gemini</p> */}
+        <img src={assets.orbitLogoRed} alt="" className="h-14 w-auto" />
       </NavLink>
-      <img src={assets.user_icon} alt="" className="w-12 rounded-full" />
+      <img
+        src={assets.user_icon}
+        alt=""
+        className="h-14 aspect-square object-cover rounded-full"
+      />
     </nav>
   );
 };

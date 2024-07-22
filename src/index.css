@@ -72,5 +72,9 @@
   font-family: "SF-Pro-Display", sans-serif;
 }
 strong {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+body {
+  max-height: 100vh;
 }

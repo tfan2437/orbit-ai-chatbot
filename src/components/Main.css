@@ -4,21 +4,16 @@
   padding: 100px 0 200px 0;
 }
 
-.greet {
-  margin: 0 0 50px 0;
-  font-size: 56px;
-  color: #c4c7c5;
-  font-weight: 500;
-  width: 900px;
-  padding: 0 20px;
+.orbit-image {
+  display: flex;
+  justify-content: center;
+}
+
+.orbit-image img {
+  width: 60px;
 }
 
 /* CHECK */
-.greet span {
-  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 .cards {
   display: grid;

@@ -3,11 +3,8 @@ import { assets } from "../assets/assets";
 const PromptCards = () => {
   return (
     <>
-      <div className="greet">
-        <p>
-          <span>Hello, Developer</span>
-        </p>
-        <p>How can I help you today?</p>
+      <div className="orbit-image">
+        <img src={assets.orbitIcon} alt="" />
       </div>
       <div className="cards">
         <div className="card">
@@ -20,7 +17,7 @@ const PromptCards = () => {
         </div>
         <div className="card">
           <p>Brainstorm team bonding activities for our work retreat</p>
-          <img src={assets.message_icon} alt="" />
+          <img src={assets.dialogue} alt="" />
         </div>
         <div className="card">
           <p>Improve the readability of the following code</p>

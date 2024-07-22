@@ -9,13 +9,16 @@ import gallery_icon from "./gallery_icon.png";
 import mic_icon from "./mic_icon.png";
 import user_icon from "./user_icon.png";
 import youtube_icon from "./youtube_icon.png";
-import message_icon from "./message_icon.png";
+
 import code_icon from "./code_icon.png";
 import send_icon from "./send_icon.png";
 import gemini_icon from "./gemini_icon.png";
 import orbitLogo from "./orbit-logo-text.png";
 import orbitLogoRed from "./orbit-logo-text-red.png";
 import aiRed from "./icon-ai-red.png";
+
+import dialogue from "./icon-dialogue.png";
+import orbitIcon from "./icon-orbit-star.png";
 
 export const assets = {
   history_icon,
@@ -29,11 +32,12 @@ export const assets = {
   mic_icon,
   user_icon,
   youtube_icon,
-  message_icon,
+  dialogue,
   code_icon,
   send_icon,
   gemini_icon,
   orbitLogo,
   orbitLogoRed,
   aiRed,
+  orbitIcon,
 };
