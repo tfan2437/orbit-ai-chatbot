@@ -48,25 +48,34 @@ const Dialogue = () => {
   return (
     <div className="result" ref={divRef}>
       {chatHistory.length > 0 &&
-        displayDialogues.map((item, index) => (
-          <div key={index}>
-            <div className="result-title">
-              <img src={assets.user_icon} alt="" />
-              <p>{item.prompt}</p>
+        displayDialogues.map((item, index) => {
+          // Check if it's the last item and if the response is empty
+          if (index === displayDialogues.length - 1 && item.response === "") {
+            return null;
+          }
+
+          return (
+            <div key={index}>
+              <div className="result-title">
+                <img src={assets.user_icon} alt="" />
+                <p>{item.prompt}</p>
+              </div>
+              <div className="result-data">
+                <img src={assets.aiRed} alt="" />
+                <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
+              </div>
             </div>
-            <div className="result-data">
-              <img src={assets.gemini_icon} alt="" />
-              <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       <div>
         <div className="result-title">
-          <img src={assets.user_icon} alt="" />
+          {prompt !== "" && <img src={assets.user_icon} alt="" />}
           <p>{prompt}</p>
         </div>
         <div className="result-data">
-          <img src={assets.gemini_icon} alt="" />
+          {response !== "" || loading ? (
+            <img src={assets.aiRed} alt="" />
+          ) : null}
           {loading ? (
             <div className="loader">
               <hr />

@@ -88,6 +88,21 @@ const ContextProvider = (props) => {
     setChatHistory((prev) => [...prev, dialogue]);
   };
 
+  // const updateChathistory = (promptPara, responsePara) => {
+  //   return new Promise((resolve, reject) => {
+  //     try {
+  //       const dialogue = {
+  //         prompt: promptPara,
+  //         response: responsePara,
+  //       };
+  //       setChatHistory((prev) => [...prev, dialogue]);
+  //       resolve();
+  //     } catch (error) {
+  //       reject(error);
+  //     }
+  //   });
+  // };
+
   const updateChathistory = (responsePara) => {
     return new Promise((resolve, reject) => {
       try {

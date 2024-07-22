@@ -2,10 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Thin-100.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Light-300.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Regular-400.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Medium-500.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Semibold-600.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Bold-700.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SSF-Pro-Display-Heavy-800.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("./assets/fonts/SF-Pro-Display-Black-900.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Druk-Wide-Bold";
+  src: url("./assets/fonts/Druk-Wide-Bold.ttf") format("truetype");
+  font-style: normal;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 
-  font-family: "Outfit", sans-serif;
+  font-family: "SF-Pro-Display", sans-serif;
+}
+strong {
+  font-weight: 600;
 }
