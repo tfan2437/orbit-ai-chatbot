@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { marked } from "marked";
-import runChat from "../config/geminiAPI";
+import { runChat } from "../config/geminiAPI";
 import { useNavigate } from "react-router-dom";
 import {
   collection,
@@ -11,7 +11,6 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
-import { profileImage } from "../assets/assets";
 
 export const Context = createContext();
 

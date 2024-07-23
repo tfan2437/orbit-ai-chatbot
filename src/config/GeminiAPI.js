@@ -15,7 +15,7 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-const runChat = async (prompt) => {
+export const runChat = async (prompt) => {
   try {
     const chatSession = model.startChat({
       generationConfig,
@@ -29,5 +29,3 @@ const runChat = async (prompt) => {
     return `Error: ${error.message}`;
   }
 };
-
-export default runChat;
