@@ -33,6 +33,10 @@
   cursor: pointer;
 }
 
+.sidebar .new-chat p {
+  padding-right: 50px;
+}
+
 .sidebar .recent {
   display: flex;
   flex-direction: column;

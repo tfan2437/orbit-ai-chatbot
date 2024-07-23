@@ -11,34 +11,61 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { profileImage } from "../assets/assets";
 
 export const Context = createContext();
 
 const ContextProvider = (props) => {
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = useState({
-    name: "Ting Wei Fan",
-    uid: "tfan2437",
-    email: "tfan2437@gmail.com",
-  });
-
+  // support
   const [isHomePage, setIsHomePage] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
+  // user
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // {
+  //   uid: "0000000000",
+  //   name: "user",
+  //   email: "user@orbit.com",
+  //   authProvider: "Orbit",
+  //   profileImage: profileImage,
+  // }
+
+  // chat history & firebase data
   const [chatHistory, setChatHistory] = useState([]);
-
-  const [input, setInput] = useState("");
-  const [prompt, setPrompt] = useState("");
-
   const [prevChats, setPrevChats] = useState([]);
 
+  // prompt & response
+  const [input, setInput] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [responseData, setResponseData] = useState("");
   const [response, setResponse] = useState("");
 
-  const [alertMessage, setAlertMessage] = useState("");
+  // Open new page
+  const newChat = () => {
+    setLoading(false);
+    setChatHistory([]);
+    setInput("");
+    setPrompt("");
+    setResponse("");
+    getPrevChats(currentUser.uid);
+    navigate("/");
+  };
 
-  // Firebase function
+  const openPrevChat = (id) => {
+    setLoading(false);
+    setChatHistory([]);
+    setInput("");
+    setPrompt("");
+    setResponse("");
+    getPrevChats(currentUser.uid);
+    navigate(`/chat/${id}`);
+  };
+
+  // Firebase fetching function
   const getPrevChats = async (uid) => {
     const chatsRef = collection(db, "userChats", uid, "chatid");
     const chatsSnapshot = await getDocs(chatsRef);
@@ -54,21 +81,6 @@ const ContextProvider = (props) => {
     setPrevChats(chatsData);
   };
 
-  const uploadChatHistory = async (uid, id) => {
-    const chatRef = doc(collection(db, "userChats", uid, "chatid"), id);
-    const chatDoc = await getDoc(chatRef);
-
-    if (!chatDoc.exists()) {
-      await setDoc(chatRef, {
-        chatId: id,
-        chatTitle: chatHistory[0].prompt.slice(0, 15),
-        dialogues: [...chatHistory],
-      });
-    } else {
-      await updateDoc(chatRef, { dialogues: [...chatHistory] });
-    }
-  };
-
   const getChatById = async (uid, id) => {
     const chatRef = doc(collection(db, "userChats", uid, "chatid"), id);
     const chatSnapshot = await getDoc(chatRef);
@@ -76,6 +88,21 @@ const ContextProvider = (props) => {
     if (chatSnapshot.exists()) {
       const chatData = chatSnapshot.data();
       setChatHistory([...chatData.dialogues]);
+    }
+  };
+
+  const uploadChatHistory = async (uid, id) => {
+    const chatRef = doc(collection(db, "userChats", uid, "chatid"), id);
+    const chatSnapshot = await getDoc(chatRef);
+
+    if (!chatSnapshot.exists()) {
+      await setDoc(chatRef, {
+        chatId: id,
+        chatTitle: chatHistory[0].prompt.slice(0, 15),
+        dialogues: [...chatHistory],
+      });
+    } else {
+      await updateDoc(chatRef, { dialogues: [...chatHistory] });
     }
   };
 
@@ -87,21 +114,6 @@ const ContextProvider = (props) => {
     };
     setChatHistory((prev) => [...prev, dialogue]);
   };
-
-  // const updateChathistory = (promptPara, responsePara) => {
-  //   return new Promise((resolve, reject) => {
-  //     try {
-  //       const dialogue = {
-  //         prompt: promptPara,
-  //         response: responsePara,
-  //       };
-  //       setChatHistory((prev) => [...prev, dialogue]);
-  //       resolve();
-  //     } catch (error) {
-  //       reject(error);
-  //     }
-  //   });
-  // };
 
   const updateChathistory = (responsePara) => {
     return new Promise((resolve, reject) => {
@@ -143,26 +155,6 @@ const ContextProvider = (props) => {
     });
   };
 
-  const newChat = () => {
-    setLoading(false);
-    setChatHistory([]);
-    setInput("");
-    setPrompt("");
-    setResponse("");
-    getPrevChats(currentUser.uid);
-    navigate("/");
-  };
-
-  const openPrevChat = (id) => {
-    setLoading(false);
-    setChatHistory([]);
-    setInput("");
-    setPrompt("");
-    setResponse("");
-    getPrevChats(currentUser.uid);
-    navigate(`/chat/${id}`);
-  };
-
   const onSent = async () => {
     setLoading(true);
     setResponse("");
@@ -179,6 +171,7 @@ const ContextProvider = (props) => {
     await typingAnimationString(formatedResponse);
   };
 
+  // after confirm the response animation is over update the chat dialogues
   useEffect(() => {
     const update = async () => {
       await updateChathistory(response);

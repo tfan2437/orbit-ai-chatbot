@@ -25,6 +25,10 @@ import peopleIcon from "./icon-people.png";
 import learningIcon from "./icon-learning.png";
 import codeIcon from "./icon-code.png";
 
+import eyeIcon from "./icon-password-show.png";
+import eyeBlockIcon from "./icon-password-hide.png";
+import googleIcon from "./google-g-icon.png";
+
 export const assets = {
   history_icon,
   menu_icon,
@@ -49,4 +53,10 @@ export const assets = {
   learningIcon,
   peopleIcon,
   chatIcon,
+  eyeIcon,
+  eyeBlockIcon,
+  googleIcon,
 };
+
+export const profileImage =
+  "https://live.staticflickr.com/65535/53875189500_05cd2b1dbb_m.jpg";

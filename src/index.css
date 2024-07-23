@@ -71,12 +71,15 @@
 
   font-family: "SF-Pro-Display", sans-serif;
 }
-strong {
-  font-weight: 700;
-}
 
 body {
   max-height: 100vh;
+}
+
+/* For result output */
+
+strong {
+  font-weight: 700;
 }
 
 code {
