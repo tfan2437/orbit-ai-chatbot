@@ -1,8 +1,5 @@
-import history_icon from "./history_icon.png";
-import menu_icon from "./menu_icon.png";
-import plus_icon from "./plus_icon.png";
-import question_icon from "./question_icon.png";
-import setting_icon from "./setting_icon.png";
+import menu from "./icon-menu.png";
+import plus from "./icon-plus.png";
 import bulb_icon from "./bulb_icon.png";
 import compass_icon from "./compass_icon.png";
 import gallery_icon from "./gallery_icon.png";
@@ -29,12 +26,19 @@ import eyeIcon from "./icon-password-show.png";
 import eyeBlockIcon from "./icon-password-hide.png";
 import googleIcon from "./google-g-icon.png";
 
+import copy from "./icon-copy.png";
+import like from "./icon-thumb-up.png";
+import cool from "./icon-angry.png";
+import x from "./icon-x.png";
+
+import history from "./icon-activity.png";
+import help from "./icon-help.png";
+import setting from "./icon-setting.png";
+
 export const assets = {
-  history_icon,
-  menu_icon,
-  plus_icon,
-  question_icon,
-  setting_icon,
+  plus,
+  help,
+  setting,
   bulb_icon,
   compass_icon,
   gallery_icon,
@@ -56,6 +60,12 @@ export const assets = {
   eyeIcon,
   eyeBlockIcon,
   googleIcon,
+  copy,
+  like,
+  cool,
+  x,
+  menu,
+  history,
 };
 
 export const profileImage =

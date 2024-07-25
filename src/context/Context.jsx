@@ -3,6 +3,7 @@ import { marked } from "marked";
 import { useNavigate } from "react-router-dom";
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -24,14 +25,7 @@ const ContextProvider = (props) => {
 
   // user
   const [currentUser, setCurrentUser] = useState(null);
-
-  // {
-  //   uid: "0000000000",
-  //   name: "user",
-  //   email: "user@orbit.com",
-  //   authProvider: "Orbit",
-  //   profileImage: profileImage,
-  // }
+  const [userUid, setUserUid] = useState(null);
 
   // chat history & firebase data
   const [chatHistory, setChatHistory] = useState([]);
@@ -43,13 +37,25 @@ const ContextProvider = (props) => {
   const [responseData, setResponseData] = useState("");
   const [response, setResponse] = useState("");
 
+  // Screen Size
+  const [showMobilMenu, setShowMobilMenu] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setWindowSize(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // gemini ai (vercel build problem)
 
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(apiKey);
 
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-1.5-flash",
   });
 
   const generationConfig = {
@@ -134,6 +140,15 @@ const ContextProvider = (props) => {
       });
     } else {
       await updateDoc(chatRef, { dialogues: [...chatHistory] });
+    }
+  };
+
+  const removeChatHistory = async (uid, id) => {
+    try {
+      await deleteDoc(doc(collection(db, "userChats", uid, "chatid"), id));
+      console.log("Deleted.");
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -238,6 +253,15 @@ const ContextProvider = (props) => {
     setAlertMessage,
     getChatById,
     openPrevChat,
+    removeChatHistory,
+    userUid,
+    setUserUid,
+    showMobilMenu,
+    setShowMobilMenu,
+    expanded,
+    setExpanded,
+    windowSize,
+    setWindowSize,
   };
 
   return (

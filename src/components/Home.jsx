@@ -1,13 +1,17 @@
 import { useContext, useEffect } from "react";
-import "./Main.css";
+import "./Home.css";
 import { Context } from "../context/Context";
 import { assets } from "../assets/assets";
 
 const Main = () => {
-  const { setIsHomePage, setInput } = useContext(Context);
+  const { setIsHomePage, setInput, currentUser, getPrevChats } =
+    useContext(Context);
 
   useEffect(() => {
     setIsHomePage(true);
+    if (currentUser) {
+      getPrevChats(currentUser.uid);
+    }
   }, []);
 
   const cardsData = [

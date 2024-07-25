@@ -10,11 +10,18 @@ const PromptBar = () => {
   const { input, setInput, onSent, isHomePage, setAlertMessage } =
     useContext(Context);
 
-  const hanlePromptSubmission = () => {
+  const handlePromptSubmission = () => {
     onSent();
     if (isHomePage) {
       const newChatId = generateId();
       navigate(`/chat/${newChatId}`);
+    }
+  };
+
+  const handleEnterSubmit = (e) => {
+    if (e.key === "Enter") {
+      console.log("enter");
+      handlePromptSubmission();
     }
   };
 
@@ -23,9 +30,10 @@ const PromptBar = () => {
       <div className="search-box">
         <input
           type="text"
-          placeholder="Enter a prompt here"
+          placeholder="Message Orbit"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => handleEnterSubmit(e)}
         />
         <div>
           <img
@@ -42,7 +50,7 @@ const PromptBar = () => {
             <img
               src={assets.send_icon}
               alt=""
-              onClick={() => hanlePromptSubmission()}
+              onClick={() => handlePromptSubmission()}
             />
           ) : null}
         </div>

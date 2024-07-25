@@ -2,25 +2,43 @@ import "./Sidebar.css";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/Context";
 import { assets } from "../../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const { newChat, prevChats, openPrevChat, setAlertMessage } =
-    useContext(Context);
+  const navigate = useNavigate();
 
-  const [expanded, setExpanded] = useState(false);
+  const {
+    newChat,
+    prevChats,
+    openPrevChat,
+    setAlertMessage,
+    currentUser,
+    removeChatHistory,
+    showMobilMenu,
+    expanded,
+    setExpanded,
+  } = useContext(Context);
+
+  const handleDeleteChat = async (id) => {
+    await removeChatHistory(currentUser.uid, id);
+    navigate("/");
+  };
+
+  const sidebarStyle = showMobilMenu ? "inline-flex" : "hidden";
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${window.innerWidth < 600 ? sidebarStyle : null}`}>
       <div className="top">
-        <img
-          className="menu"
-          src={assets.menu_icon}
-          alt=""
-          onClick={() => setExpanded((prev) => !prev)}
-        />
-
+        {showMobilMenu ? null : (
+          <img
+            className="menu w-5"
+            src={assets.menu}
+            alt=""
+            onClick={() => setExpanded((prev) => !prev)}
+          />
+        )}
         <div onClick={() => newChat()} className="new-chat">
-          <img src={assets.plus_icon} alt="" />
+          <img src={assets.plus} alt="" className="w-5" />
           {expanded && <p>New Chat</p>}
         </div>
 
@@ -30,12 +48,20 @@ const Sidebar = () => {
             {prevChats.map((item, index) => {
               return (
                 <div
-                  className="recent-entry"
+                  className="recent-container group"
                   key={index}
                   onClick={() => openPrevChat(item.chatId)}
                 >
-                  <img src={assets.dialogue} alt="" />
-                  <p>{item.chatTitle}</p>
+                  <div className="recent-entry">
+                    <img src={assets.dialogue} alt="" />
+                    <p>{item.chatTitle}</p>
+                  </div>
+                  <img
+                    src={assets.x}
+                    alt=""
+                    onClick={() => handleDeleteChat(item.chatId)}
+                    className="w-6 h-6 opacity-0 group-hover:opacity-40 z-20 p-1"
+                  />
                 </div>
               );
             })}
@@ -44,24 +70,24 @@ const Sidebar = () => {
       </div>
       <div className="bottom">
         <div
-          className="bottom-item recent-entry"
+          className="bottom-item"
           onClick={() => setAlertMessage("Feature coming soon.")}
         >
-          <img src={assets.question_icon} alt="" />
+          <img src={assets.help} alt="" />
           {expanded && <p>Help</p>}
         </div>
         <div
-          className="bottom-item recent-entry"
+          className="bottom-item"
           onClick={() => setAlertMessage("Feature coming soon.")}
         >
-          <img src={assets.history_icon} alt="" />
+          <img src={assets.history} alt="" />
           {expanded && <p>Activity</p>}
         </div>
         <div
-          className="bottom-item recent-entry"
+          className="bottom-item"
           onClick={() => setAlertMessage("Feature coming soon.")}
         >
-          <img src={assets.setting_icon} alt="" />
+          <img src={assets.setting} alt="" />
           {expanded && <p>Setting</p>}
         </div>
       </div>

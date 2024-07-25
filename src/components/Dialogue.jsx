@@ -17,16 +17,17 @@ const Dialogue = () => {
     currentUser,
     uploadChatHistory,
     getChatById,
+    userUid,
   } = useContext(Context);
 
   useEffect(() => {
     setIsHomePage(false);
-    getPrevChats(currentUser.uid);
-    getChatById(currentUser.uid, id);
+    getPrevChats(userUid);
+    getChatById(userUid, id);
   }, []);
 
   useEffect(() => {
-    getChatById(currentUser.uid, id);
+    getChatById(userUid, id);
   }, [id]);
 
   useEffect(() => {
@@ -44,6 +45,10 @@ const Dialogue = () => {
     chatHistory.length > 0 && response === ""
       ? chatHistory.slice(0, chatHistory.length)
       : chatHistory.slice(0, chatHistory.length - 1);
+
+  const handleCopyResponse = (targetResponse) => {
+    navigator.clipboard.writeText(targetResponse);
+  };
 
   return (
     <div className="result" ref={divRef}>
@@ -63,9 +68,28 @@ const Dialogue = () => {
                 <img src={assets.aiRed} alt="" />
                 <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
               </div>
+              <div className="pl-[45px] pt-1 sm:pl-[60px] sm:pt-3 flex gap-1 sm:gap-2 items-center">
+                <img
+                  src={assets.copy}
+                  alt="Copy"
+                  onClick={() => handleCopyResponse(item.response)}
+                  className="cursor-pointer w-4 h-4 opacity-50 hover:opacity-100 aspect-square"
+                />
+                <img
+                  src={assets.like}
+                  alt="Copy"
+                  className="cursor-pointer w-4 h-4 ml-1 opacity-50 hover:opacity-100 aspect-square"
+                />
+                <img
+                  src={assets.cool}
+                  alt="Copy"
+                  className="cursor-pointer w-[18px] h-[18px] opacity-50 hover:opacity-100 aspect-square"
+                />
+              </div>
             </div>
           );
         })}
+
       <div>
         <div className="result-title">{prompt !== "" && <p>{prompt}</p>}</div>
         <div className="result-data">

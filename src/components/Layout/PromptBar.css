@@ -9,7 +9,7 @@
   justify-content: end;
 }
 
-.main-bottom .search-box {
+.search-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,5 +71,29 @@
 
   .bottom-info {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-box img {
+    display: none;
+  }
+
+  .search-box img:nth-child(3) {
+    display: block;
+  }
+
+  .search-box {
+    gap: 10px;
+    padding: 2px 5px;
+  }
+
+  .search-box img {
+    width: 20px;
+    margin-right: 6px;
+  }
+
+  .search-box input {
+    font-size: 14px;
   }
 }

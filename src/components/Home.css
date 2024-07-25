@@ -52,25 +52,6 @@
   background-color: #dfe4ea;
 }
 
-/* @media (max-width: 600px) {
-  .main-bottom input {
-    flex: none;
-    width: 150px;
-  }
-
-  .main-bottom img {
-    width: 20px;
-  }
-
-  .search-box {
-    padding: 5px 10px;
-  }
-
-  .search-box div {
-    gap: 5px;
-  }
-} */
-
 @media (max-width: 1400px) {
   .main-container {
     margin: 0 15% 0 15%;
@@ -80,5 +61,19 @@
 @media (max-width: 800px) {
   .main-container {
     margin: 0 8% 0 8%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-container {
+    padding-top: 50px;
+  }
+
+  .cards {
+    display: none;
+  }
+
+  .orbit-image img {
+    width: 40px;
   }
 }

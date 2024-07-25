@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center h-[100vh] w-[100vw] bg-custom-image bg-cover bg-center">
-      <div className="flex flex-col items-center mt-[60px] mb-[30px] md:mb-[70px] lg:mb-[100px]">
+      <div className="flex flex-col items-center mt-[30px] mb-[10px] md:mb-[70px] lg:mb-[100px]">
         <img src={assets.orbitLogoRed} alt="" className="h-12 w-auto" />
       </div>
       <div>

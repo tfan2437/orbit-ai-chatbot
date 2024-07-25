@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import PromptBar from "./PromptBar";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/Context";
 import Alert from "../Alert/Alert";
 
