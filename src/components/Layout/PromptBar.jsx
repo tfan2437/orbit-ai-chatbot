@@ -37,18 +37,18 @@ const PromptBar = () => {
         />
         <div>
           <img
-            src={assets.gallery_icon}
+            src={assets.imageAdd}
             alt=""
             onClick={() => setAlertMessage("Feature coming soon.")}
           />
           <img
-            src={assets.mic_icon}
+            src={assets.mic}
             alt=""
             onClick={() => setAlertMessage("Feature coming soon.")}
           />
           {input ? (
             <img
-              src={assets.send_icon}
+              src={assets.send}
               alt=""
               onClick={() => handlePromptSubmission()}
             />

@@ -65,7 +65,7 @@ const Dialogue = () => {
                 <p>{item.prompt}</p>
               </div>
               <div className="result-data">
-                <img src={assets.aiRed} alt="" />
+                <img src={assets.starRed} alt="" />
                 <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
               </div>
               <div className="pl-[45px] pt-1 sm:pl-[60px] sm:pt-3 flex gap-1 sm:gap-2 items-center">
@@ -94,7 +94,7 @@ const Dialogue = () => {
         <div className="result-title">{prompt !== "" && <p>{prompt}</p>}</div>
         <div className="result-data">
           {response !== "" || loading ? (
-            <img src={assets.aiRed} alt="" />
+            <img src={assets.starRed} alt="" />
           ) : null}
           {loading ? (
             <div className="loader">
