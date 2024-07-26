@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";

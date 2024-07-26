@@ -1,26 +1,18 @@
-import "./Navbar.css";
-import { assets, profileImage } from "../../assets/assets";
-import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
+import { NavLink } from "react-router-dom";
 import { logout } from "../../config/firebase";
+import { assets, profileImage } from "../../assets/assets";
 
 const Navbar = () => {
-  const {
-    currentUser,
-    showMobilMenu,
-    setShowMobilMenu,
-    expanded,
-    setExpanded,
-  } = useContext(Context);
+  const { currentUser, showMobilMenu, setShowMobilMenu, setExpanded } =
+    useContext(Context);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
-  // padding: 10px 30px 0 20px;
 
   const handleShowMobileMenu = () => {
     setExpanded((prev) => !prev);

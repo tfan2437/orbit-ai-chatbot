@@ -1,13 +1,14 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { Context } from "./context/Context";
+import { useContext, useEffect } from "react";
+import { auth, db } from "./config/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+
+import Login from "./components/Login/Login";
 import MainLayout from "./components/Layout/MainLayout";
 import Home from "./components/Home";
 import Dialogue from "./components/Dialogue";
-import { useContext, useEffect, useState } from "react";
-import { Context } from "./context/Context";
-import Login from "./components/Login/Login";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "./config/firebase";
-import { doc, getDoc } from "firebase/firestore";
 
 const App = () => {
   const navigate = useNavigate();

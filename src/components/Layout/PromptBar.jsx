@@ -1,8 +1,8 @@
+import "./PromptBar.css";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
-import { assets } from "../../assets/assets";
-import "./PromptBar.css";
 import { useNavigate } from "react-router-dom";
+import { assets } from "../../assets/assets";
 import { generateId } from "../../utils/format";
 
 const PromptBar = () => {

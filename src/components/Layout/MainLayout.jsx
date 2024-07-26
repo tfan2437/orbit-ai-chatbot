@@ -1,10 +1,10 @@
-import "./MainLayout.css";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 import { Outlet } from "react-router-dom";
+import "./MainLayout.css";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import PromptBar from "./PromptBar";
-import { useContext, useEffect, useState } from "react";
-import { Context } from "../../context/Context";
 import Alert from "../Alert/Alert";
 
 const MainLayout = () => {

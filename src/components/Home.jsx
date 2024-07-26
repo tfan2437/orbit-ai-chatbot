@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
 import "./Home.css";
+import { useContext, useEffect } from "react";
 import { Context } from "../context/Context";
 import { assets } from "../assets/assets";
 
