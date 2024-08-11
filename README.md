@@ -1,4 +1,4 @@
-## Orbit AI – 人工智慧聊天機器人網頁應用程式
+## Orbit AI – 人工智慧聊天機器人
 
 ### 概述
 
@@ -32,7 +32,7 @@ Orbit AI 是一個先進的人工智慧聊天機器人應用程式，旨在為�
 
 ---
 
-## Orbit AI – AI Chatbot Web Application
+## Orbit AI – AI Chatbot
 
 ### Overview
 
