@@ -15,7 +15,7 @@ Orbit AI 是一個先進的人工智慧聊天機器人應用程式，旨在為�
 
 ### 即時演示
 
-- [Orbit AI 即時演示](#) _(將 # 替換為實際 URL)_
+- [Orbit AI 即時演示](https://orbit-ai-chatbot.vercel.app)
 
 ### 測試帳戶
 
