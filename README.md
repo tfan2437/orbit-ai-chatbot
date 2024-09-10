@@ -1,3 +1,37 @@
+## Orbit AI – AI Chatbot
+
+### Overview
+
+Orbit AI is an advanced AI chatbot application designed to offer users an interactive and responsive chat experience. This project highlights my ability to integrate complex APIs, manage global state, and create a seamless user interface that works flawlessly across both desktop and mobile devices.
+
+### Features
+
+- **Interactive Chat Experience**: Users can engage in real-time conversations with the AI, with responses generated through the Gemini API. The smooth typing animations and clear message layouts enhance the overall user experience.
+- **Global State Management**: Implemented using Context API, ensuring efficient handling of user sessions, chat history, and global states across the application.
+- **Data Persistence**: All chat dialogues and user information are securely stored in Firestore, providing a reliable and scalable backend.
+- **Secure Authentication**: The application uses Firebase Authentication, allowing users to register and log in using email or Google OAuth. This ensures that all user data is protected and accessible only to authenticated users.
+- **Responsive Design**: The user interface, built with Tailwind CSS, is optimized for a consistent experience on both desktop and mobile devices. Special attention is given to user interaction elements, such as buttons, input fields, and animations.
+- **Deployment and Performance**: Orbit AI is deployed on Vercel, offering fast load times and high availability. The application is optimized to handle multiple users concurrently without performance degradation.
+
+### Live Demo
+
+- [Orbit AI Live Demo](https://orbit-ai-chatbot.vercel.app)
+
+### Test Account
+
+- **Email**: testuser@gmail.com
+- **Password**: testpassword
+
+### Technologies Used
+
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Gemini API, Firebase
+- **Database**: Firestore
+- **Authentication**: Firebase Authentication
+- **Deployment**: Vercel
+
+---
+
 ## Orbit AI – 人工智慧聊天機器人
 
 ### 概述
@@ -30,36 +64,3 @@ Orbit AI 是一個先進的人工智慧聊天機器人應用程式，旨在為�
 - **身份驗證**：Firebase Authentication
 - **部署**：Vercel
 
----
-
-## Orbit AI – AI Chatbot
-
-### Overview
-
-Orbit AI is an advanced AI chatbot application designed to offer users an interactive and responsive chat experience. This project highlights my ability to integrate complex APIs, manage global state, and create a seamless user interface that works flawlessly across both desktop and mobile devices.
-
-### Features
-
-- **Interactive Chat Experience**: Users can engage in real-time conversations with the AI, with responses generated through the Gemini API. The smooth typing animations and clear message layouts enhance the overall user experience.
-- **Global State Management**: Implemented using Context API, ensuring efficient handling of user sessions, chat history, and global states across the application.
-- **Data Persistence**: All chat dialogues and user information are securely stored in Firestore, providing a reliable and scalable backend.
-- **Secure Authentication**: The application uses Firebase Authentication, allowing users to register and log in using email or Google OAuth. This ensures that all user data is protected and accessible only to authenticated users.
-- **Responsive Design**: The user interface, built with Tailwind CSS, is optimized for a consistent experience on both desktop and mobile devices. Special attention is given to user interaction elements, such as buttons, input fields, and animations.
-- **Deployment and Performance**: Orbit AI is deployed on Vercel, offering fast load times and high availability. The application is optimized to handle multiple users concurrently without performance degradation.
-
-### Live Demo
-
-- [Orbit AI Live Demo](https://orbit-ai-chatbot.vercel.app)
-
-### Test Account
-
-- **Email**: testuser@gmail.com
-- **Password**: testpassword
-
-### Technologies Used
-
-- **Frontend**: React, Tailwind CSS
-- **Backend**: Gemini API, Firebase
-- **Database**: Firestore
-- **Authentication**: Firebase Authentication
-- **Deployment**: Vercel
